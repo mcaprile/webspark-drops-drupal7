@@ -48,11 +48,11 @@ function mega_footer_block_view($delta = '') {
       }
 
       if ($logo != '' && $logo != NULL) {
-          $file = file_load(variable_get('unit_logo', ''));
+          $file = file_load($logo);
           $file_url = file_create_url($file->uri);
 
           if (!empty($file_url)) {
-              $footer_mark .= "<img src='$file_url' alt='$alt' />";
+              $footer_mark .= "<img src='$file_url' alt='$alt' title='$alt'/>";
           }
       }
 
@@ -319,7 +319,7 @@ function mega_footer_block_configure($delta = '') {
       '#upload_location' => 'public://',
     );
 
-    $form['logo_alt'] = array(
+    $form['megafoot_logo_alt'] = array(
       '#type' => 'textfield',
       '#title' => t('Logo Alt Text.'),
       '#default_value' => variable_get('megafoot_logo_alt', NULL),
@@ -428,7 +428,7 @@ function mega_footer_block_save($delta = '', $edit = array()) {
       file_usage_add($file, 'mega_footer', 'block', $block->bid);
     }
 
-    variable_set('megafoot_logo_alt', $edit['logo_alt']);
+    variable_set('megafoot_logo_alt', $edit['megafoot_logo_alt']);
     variable_set('unit_logo', $edit['unit_logo']);
     variable_set('megafoot_show_contact_info', $edit['show_contact_info']);
     variable_set('unit_title', $edit['unit_title']);

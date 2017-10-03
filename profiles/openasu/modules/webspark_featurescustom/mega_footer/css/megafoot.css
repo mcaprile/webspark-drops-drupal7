@@ -186,10 +186,6 @@
         display: inline-block;
     }
 
-    .megafoot .row .space-bot-md {
-        border-bottom: 1px solid #383d3e;
-    }
-
 }
 
 /* [KM 12-5-16] Added stronger focus styles for keyboard accessibility */
