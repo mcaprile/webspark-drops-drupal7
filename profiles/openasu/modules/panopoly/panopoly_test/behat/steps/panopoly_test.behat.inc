@@ -913,19 +913,35 @@ class TestSubContext extends RawDrupalContext implements DrupalSubContextInterfa
     /**
      * Click some text
      *
-     * @When /^I click on the text "([^"]*)"$/
+     * @When /^I click on the department "([^"]*)"$/
      */
-    public function iClickOnTheText($text)
+    public function iClickOnTheDepartment($nid)
     {
         $session = $this->getSession();
-        $page = $session->getPage();
-        $element = $page->find(
-            'xpath',
-            //$session->getSelectorsHandler()->selectorToXpath('xpath', '*//*[text()="'. $text .'"]')
-        '*//*li[@class="jqtree_common jqtree-folder jqtree-selected"]//div[@class="jqtree-element jqtree_common"]//span[@class="jqtree-title jqtree_common jqtree-title-folder"]//[text()="'. $text .'"]'
-        );
+        $element = $session->getPage()->
+        find('xpath',$session->getSelectorsHandler()->selectorToXpath('xpath', "//li[@dept_nid='" . $nid ."']" ));
+
         if (null === $element) {
-            throw new \InvalidArgumentException(sprintf('Cannot find text: "%s"', $text));
+            throw new \InvalidArgumentException(sprintf('Cannot find dept id: "%s"', $nid));
+        }
+
+        $element->click();
+
+    }
+
+    /**
+     * Click some text
+     *
+     * @When /^I click on the box text "([^"]*)"$/
+     */
+    public function iClickOnTheBoxText($nid)
+    {
+        $session = $this->getSession();
+        $element = $session->getPage()->
+        find('xpath',$session->getSelectorsHandler()->selectorToXpath('xpath', "//label[@data-reactid='" . $nid ."']" ));
+
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Cannot find label id: "%s"', $nid));
         }
 
         $element->click();
