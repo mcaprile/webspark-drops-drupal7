@@ -911,37 +911,18 @@ class TestSubContext extends RawDrupalContext implements DrupalSubContextInterfa
   }
 
     /**
-     * Click some text
+     * Click some text using identifiers
      *
-     * @When /^I click on the department "([^"]*)"$/
+     * @When /^I click on the property "([^"]*)" from the element "([^"]*)" with value "([^"]*)"$/
      */
-    public function iClickOnTheDepartment($nid)
+    public function iClickOnTheElement($property,$element, $nid)
     {
         $session = $this->getSession();
         $element = $session->getPage()->
-        find('xpath',$session->getSelectorsHandler()->selectorToXpath('xpath', "//li[@dept_nid='" . $nid ."']" ));
+        find('xpath',$session->getSelectorsHandler()->selectorToXpath('xpath', "//" . $element . "[@" . $property . "='" . $nid ."']" ));
 
         if (null === $element) {
-            throw new \InvalidArgumentException(sprintf('Cannot find dept id: "%s"', $nid));
-        }
-
-        $element->click();
-
-    }
-
-    /**
-     * Click some text
-     *
-     * @When /^I click on the box text "([^"]*)"$/
-     */
-    public function iClickOnTheBoxText($nid)
-    {
-        $session = $this->getSession();
-        $element = $session->getPage()->
-        find('xpath',$session->getSelectorsHandler()->selectorToXpath('xpath', "//label[@data-reactid='" . $nid ."']" ));
-
-        if (null === $element) {
-            throw new \InvalidArgumentException(sprintf('Cannot find label id: "%s"', $nid));
+            throw new \InvalidArgumentException(print('Cannot find the specified iten.'));
         }
 
         $element->click();
