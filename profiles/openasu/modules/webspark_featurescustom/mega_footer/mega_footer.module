@@ -478,13 +478,41 @@ function mega_footer_custom_icon_and_link($type,$num,$mark) {
         if (!empty($file_url)) {
             if (!empty($check)) {
                 $mark .= "<li><a href='" . $check . "' title='" . $name . "'><span class='sr-only'>" . $name . "</span>
-        <img class='fa' src='$file_url' aria-hidden='true'/></a></li>
+        <img class='fa' alt ='" . $name . "' src='$file_url' aria-hidden='true'/></a></li>
         </li>";
             }
         }
     }
 
     return $mark;
+}
+
+function imageCreateFromAny($filepath) {
+    $type = exif_imagetype($filepath); // [] if you don't have exif you could use getImageSize()
+    $allowedTypes = array(
+        1,  // [] gif
+        2,  // [] jpg
+        3,  // [] png
+        6   // [] bmp
+    );
+    if (!in_array($type, $allowedTypes)) {
+        return false;
+    }
+    switch ($type) {
+        case 1 :
+            $im = imageCreateFromGif($filepath);
+            break;
+        case 2 :
+            $im = imageCreateFromJpeg($filepath);
+            break;
+        case 3 :
+            $im = imageCreateFromPng($filepath);
+            break;
+        case 6 :
+            $im = imageCreateFromBmp($filepath);
+            break;
+    }
+    return $im;
 }
 
 /**
