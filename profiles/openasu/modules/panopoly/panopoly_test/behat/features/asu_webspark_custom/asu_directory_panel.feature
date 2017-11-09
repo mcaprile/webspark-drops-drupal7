@@ -10,9 +10,6 @@ Feature: Add ASU directory panel
     And I fill in "path[alias]" with "test-directory"
     When I type "testing in body" in the "edit-body-und-0-value" WYSIWYG editor
     And I press the "Publish" button
-    And I click "Change layout"
-    And I click "Boxton"
-    And I press the "Save as Content Page default" button
     And I click "Customize this page"
     And I click "Add new pane"
     And I click "Add ASU Directory Panel"
