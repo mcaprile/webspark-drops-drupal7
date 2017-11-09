@@ -60,14 +60,4 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
 
     }
 
-//
-// Place your definition and hook methods here:
-//
-//  /**
-//   * @Given I have done something with :stuff
-//   */
-//  public function iHaveDoneSomethingWith($stuff) {
-//    doSomethingWith($stuff);
-//  }
-//
 }
