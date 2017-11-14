@@ -60,4 +60,38 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
 
     }
 
+    /**
+     * See a certain element with identifiers
+     *
+     * @When /^I should see the property "([^"]*)" from the element "([^"]*)" with value "([^"]*)"$/
+     */
+    public function iSeeTheElement($property,$element, $nid)
+    {
+        $session = $this->getSession();
+        $element = $session->getPage()->
+        find('xpath',$session->getSelectorsHandler()->selectorToXpath('xpath', "//" . $element . "[@" . $property . "='" . $nid ."']" ));
+
+        if (null === $element) {
+            throw new \InvalidArgumentException(print('Cannot find the specified item.'));
+        }
+
+    }
+
+    /**
+     * See a certain element with identifiers
+     *
+     * @When /^I should not see the property "([^"]*)" from the element "([^"]*)" with value "([^"]*)"$/
+     */
+    public function iShouldNotSeeTheElement($property,$element, $nid)
+    {
+        $session = $this->getSession();
+        $element = $session->getPage()->
+        find('xpath',$session->getSelectorsHandler()->selectorToXpath('xpath', "//" . $element . "[@" . $property . "='" . $nid ."']" ));
+
+        if (null != $element) {
+            throw new \InvalidArgumentException(print('The specified item was found.'));
+        }
+
+    }
+
 }
