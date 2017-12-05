@@ -97,23 +97,10 @@
 }
 
 .megafoot .social-media > li > a > img {
-    height: 30px;
+    height: 38px;
     padding: 0;
     margin: 0;
-    -webkit-filter: grayscale(100%);
-    -moz-filter: grayscale(100%);
-    -o-filter: grayscale(100%);
-    filter: grayscale(100%);
-    filter: url(filters.svg#grayscale);
-    filter: gray;
     vertical-align: middle;
-}
-
-.megafoot .social-media > li > a > img:hover {
-    -webkit-filter: grayscale(100%) brightness(500%);
-    -moz-filter: grayscale(100%) brightness(500%);
-    -o-filter: grayscale(100%) brightness(500%);
-    filter: grayscale(100%) brightness(500%);
 }
 
 .megafoot ul > li > a, .megafoot ol > li > a {
