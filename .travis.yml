@@ -9,6 +9,9 @@ sudo: required
 dist: trusty
 group: edge
 
+addons:
+  artifacts: true
+
 # Cache Composer & Drush directories.
 cache:
   directories:
