@@ -84,7 +84,7 @@ install:
   - sudo chmod -R 777 sites/all
 
   # create directory for behat screenshots
-  - mkdir sites/default/files/behat_screenshot
+  - mkdir -p sites/default/files/behat_screenshot
 
   # Get Selenium
   - wget https://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.0.jar
