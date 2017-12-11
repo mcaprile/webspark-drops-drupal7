@@ -2,7 +2,7 @@ Feature: Import iSearch Profiles
   Background:
     Given I am logged in as a user with the "administrator" role
 
-    @private_files @javascript @api @panopoly_magic @drushTest
+    @drupal_private_files @javascript @api @panopoly_magic @drushTest
     Scenario: Import iSearch Profiles (no sub-departments)
       Given I am at "/admin/content/isearch/configure"
       When I click on the element "label" which has property "data-reactid" with value ".1.1"
@@ -13,10 +13,10 @@ Feature: Import iSearch Profiles
       And I click "Import iSearch Profiles"
       And I fill in "edit-isearch-import-limit-value" with "50"
       And I press the "Begin import" button
-      And I wait for 120 seconds
+      And I wait for 30 seconds
       Then I should see "Processed"
 
-  @private_files @javascript @api @panopoly_magic @drushTest
+  @drupal_private_files @javascript @api @panopoly_magic @drushTest
   Scenario: Add directory panel with imported profiles
     Given I am at "/admin/content/isearch/configure"
     When I click on the element "label" which has property "data-reactid" with value ".1.1"
@@ -28,7 +28,7 @@ Feature: Import iSearch Profiles
     And I click "Import iSearch Profiles"
     And I fill in "edit-isearch-import-limit-value" with "50"
     And I press the "Begin import" button
-    And I wait for 120 seconds
+    And I wait for 30 seconds
     Given I am at "/node/add"
     When I click "Content Page"
     And I fill in "Title" with "Test page for directory panel"
