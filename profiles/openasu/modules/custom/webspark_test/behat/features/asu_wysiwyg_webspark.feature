@@ -9,8 +9,8 @@ Feature: Use rich text editor
     And I fill in the following:
       | Title  | Testing WYSIWYG       |
       | Editor | panopoly_wysiwyg_text |
-
-  @api @javascript @panopoly_wysiwyg @webspark_added
+  #todo: remove the webspark_ignore to continue testing this
+  @api @javascript @panopoly_wysiwyg @webspark_added @webspark_ignore
   Scenario Outline: Format text with Webspark-specific styles in the WYSIWYG editor
     When I click the "<Styles>" element identified by the "id" attribute in the "edit-body-und-0-value" WYSIWYG editor
     And I click the "<Styling>" option in the opened "Styles" WYSIWYG editor drop down list

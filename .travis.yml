@@ -83,6 +83,9 @@ install:
   # Setup files
   - sudo chmod -R 777 sites/all
 
+  # create directory for behat screenshots
+  - mkdir sites/default/files/behat_screenshot
+
   # Get Selenium
   - wget https://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.0.jar
   - java -jar selenium-server-standalone-2.53.0.jar > /dev/null 2>&1 &
@@ -111,7 +114,7 @@ script:
   #todo: uncomment this line before
   #- bin/behat --colors --tags '~@webspark_ignore' --tags '~@panopoly_demo' --tags '~@panopoly_search' --config behat.travis.yml
   - cd ../../../custom/webspark_test/behat
-  - bin/behat --colors --config behat.travis.yml
+  - bin/behat --colors --config behat.travis.yml --tags '~@webspark_ignore'
 
 after_script:
 

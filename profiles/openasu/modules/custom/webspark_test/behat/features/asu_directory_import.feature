@@ -2,21 +2,21 @@ Feature: Import iSearch Profiles
   Background:
     Given I am logged in as a user with the "administrator" role
 
-    @drupal_private_files @javascript @api @panopoly_magic @drushTest
-    Scenario: Import iSearch Profiles (no sub-departments)
-      Given I am at "/admin/content/isearch/configure"
-      When I click on the element "label" which has property "data-reactid" with value ".1.1"
-      And I press the "Browse" button
-      And I click on the element "li" which has property "dept_nid" with value "1344"
-      And I press the "Submit" button
-      And I press the "Save configuration" button
-      And I click "Import iSearch Profiles"
-      And I fill in "edit-isearch-import-limit-value" with "50"
-      And I press the "Begin import" button
-      And I wait for 30 seconds
-      Then I should see "Processed"
+    #@drupal_private_files @javascript @api
+    #Scenario: Import iSearch Profiles (no sub-departments)
+    #  Given I am at "/admin/content/isearch/configure"
+    #  When I click on the element "label" which has property "data-reactid" with value ".1.1"
+    #  And I press the "Browse" button
+    #  And I click on the element "li" which has property "dept_nid" with value "1344"
+    #  And I press the "Submit" button
+    #  And I press the "Save configuration" button
+    #  And I click "Import iSearch Profiles"
+    #  And I fill in "edit-isearch-import-limit-value" with "50"
+    #  And I press the "Begin import" button
+    #  And I wait for 30 seconds
+    #  Then I should see "Processed"
 
-  @drupal_private_files @javascript @api @panopoly_magic @drushTest
+  @drupal_private_files @javascript @api
   Scenario: Add directory panel with imported profiles
     Given I am at "/admin/content/isearch/configure"
     When I click on the element "label" which has property "data-reactid" with value ".1.1"
@@ -29,6 +29,7 @@ Feature: Import iSearch Profiles
     And I fill in "edit-isearch-import-limit-value" with "50"
     And I press the "Begin import" button
     And I wait for 30 seconds
+    Then I should see "Processed"
     Given I am at "/node/add"
     When I click "Content Page"
     And I fill in "Title" with "Test page for directory panel"
@@ -46,5 +47,5 @@ Feature: Import iSearch Profiles
     And I press the "Add" button
     And I press the "Save as custom" button
     And I click on the text "View" in the "a" tag
-    And I click on the text "ALL" in the "li" tag
+    #And I click on the text "ALL" in the "li" tag
     Then I should not see "No employees found."
