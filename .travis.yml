@@ -68,6 +68,9 @@ install:
   # Build Behat dependencies
   - cd profiles/openasu/modules/panopoly/panopoly_test/behat
   - composer install --no-interaction
+  # Build Behat dependencies
+  - cd ../../../custom/webspark_test/behat
+  - composer install --no-interaction
   # todo: change this before merging
   - cd /home/travis/build/ctestama/webspark-drops-drupal7
 
@@ -97,12 +100,15 @@ before_script:
   - drush vset --always-set asu_brand_ci_testing 1
   # Enable Panopoly Test module
   - drush pm-enable panopoly_test --yes
+  - drush pm-enable webspark_test --yes
   - drush cc all
   - cd ./profiles/openasu/modules/panopoly/panopoly_test/behat
 
 script:
-
-  - bin/behat --colors --tags '~@webspark_ignore' --tags '~@panopoly_demo' --tags '~@panopoly_search' --config behat.travis.yml
+  #todo: uncomment this line before
+  #- bin/behat --colors --tags '~@webspark_ignore' --tags '~@panopoly_demo' --tags '~@panopoly_search' --config behat.travis.yml
+  - cd ../../../custom/webspark_test/behat
+  - bin/behat --colors --config behat.travis.yml
 
 after_script:
 

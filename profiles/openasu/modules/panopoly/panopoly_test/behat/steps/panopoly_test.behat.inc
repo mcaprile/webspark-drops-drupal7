@@ -910,24 +910,4 @@ class TestSubContext extends RawDrupalContext implements DrupalSubContextInterfa
     throw new \Exception(sprintf("Cannot find link with text '%s' and index %d", $link, $count));
   }
 
-    // /**
-     // * Click some text using identifiers
-    //  *
-    //  * @When /^I click on the property "([^"]*)" from the element "([^"]*)" with value "([^"]*)"$/
-    //  */
-   /* public function iClickOnTheElement($property,$element, $nid)
-    {
-        $session = $this->getSession();
-        $element = $session->getPage()->
-        find('xpath',$session->getSelectorsHandler()->selectorToXpath('xpath', "//" . $element . "[@" . $property . "='" . $nid ."']" ));
-
-        if (null === $element) {
-            throw new \InvalidArgumentException(print('Cannot find the specified item.'));
-        }
-
-        $element->click();
-
-    }*/
-
 }
-
