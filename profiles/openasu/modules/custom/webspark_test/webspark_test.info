@@ -1,0 +1,15 @@
+name = Webspark Test
+description = Provides configuration and functionality for use in the Panopoly automated tests.
+core = 7.x
+package = ASU Webspark
+project = webspark_test
+dependencies[] = panopoly_test
+dependencies[] = asu_dirs
+dependencies[] = asu_isearch
+
+; Information added by Drupal.org packaging script on 2017-06-22
+version = "7.x-1.46"
+core = "7.x"
+project = "webspark_test"
+datestamp = "1498107373"
+

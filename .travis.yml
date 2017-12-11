@@ -1,11 +1,19 @@
 language: php
 
-# Latest version of 5.5.x on travis-ci.org
+# PHP 7
 php:
-  - 5.5.29
+  - 7.0
 
 # forces old Travis-CI infrastructure
 sudo: required
+dist: trusty
+group: edge
+
+# Cache Composer & Drush directories.
+cache:
+  directories:
+    - $HOME/.composer/cache
+    - $HOME/.drush/cache
 
 mysql:
   database: drupal
@@ -13,10 +21,12 @@ mysql:
   encoding: utf8
 
 # whitelist
+# todo: remove webspark branch after testing
 branches:
   only:
     - master
     - travis-ci
+    - issue-webspark-1201
 
 # Firefox 47.0 is currently breaking Selenium Server
 # TODO - Update from Selenium Server Standalone to alternative Marionette
@@ -58,7 +68,8 @@ install:
   # Build Behat dependencies
   - cd profiles/openasu/modules/panopoly/panopoly_test/behat
   - composer install --no-interaction
-  - cd /home/travis/build/ASU/webspark-drops-drupal7
+  # todo: change this before merging
+  - cd /home/travis/build/ctestama/webspark-drops-drupal7
 
   # Build Codebase
   - mkdir private_files
@@ -102,4 +113,6 @@ after_script:
 
 notifications:
   email:
-    - webspark-ci@googlegroups.com
+  #TODO: change this back after testing
+  - ctestama@asu.edu
+  #  - webspark-ci@googlegroups.com
