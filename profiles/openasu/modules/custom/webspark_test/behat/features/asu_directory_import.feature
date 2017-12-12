@@ -30,6 +30,7 @@ Feature: Import iSearch Profiles
     And I press the "Begin import" button
     And I wait for 30 seconds
     Then I should see "Processed"
+    Given the cache has been cleared
     Given I am at "/node/add"
     When I click "Content Page"
     And I fill in "Title" with "Test page for directory panel"
@@ -47,5 +48,5 @@ Feature: Import iSearch Profiles
     And I press the "Add" button
     And I press the "Save as custom" button
     And I click on the text "View" in the "a" tag
-    #And I click on the text "ALL" in the "li" tag
+    And I click on the text "ALL" in the "li" tag
     Then I should not see "No employees found."
