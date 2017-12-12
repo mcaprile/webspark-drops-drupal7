@@ -30,7 +30,8 @@ Feature: Import iSearch Profiles
     And I press the "Begin import" button
     And I wait for 30 seconds
     Then I should see "Processed"
-    Given the cache has been cleared
+    Given I am at "/admin/content"
+    Then I should see "iSearch Profile"
     Given I am at "/node/add"
     When I click "Content Page"
     And I fill in "Title" with "Test page for directory panel"
