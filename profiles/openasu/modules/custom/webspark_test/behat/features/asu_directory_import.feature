@@ -29,8 +29,10 @@ Feature: Import iSearch Profiles
     And I fill in "edit-isearch-import-limit-value" with "50"
     And I press the "Begin import" button
     And I wait for 30 seconds
+    Then I take a screenshot
     Then I should see "Processed"
     When I am at "/admin/content"
+    Then I take a screenshot
     Then I should see "iSearch Profile"
     When I am at "/node/add"
     And I click "Content Page"
@@ -44,6 +46,7 @@ Feature: Import iSearch Profiles
     And I click on the element "li" which has property "dept_nid" with value "1344"
     And I click on the text " Include sub-departments?" in the "label" tag
     And I press the "Submit" button
+    Then I take a screenshot
     And I click on the element "a" which has property "href" with value "#edit-field-asu-directory-items-und-0-horizontal-tabs-advanced"
     And I click on the element "label" which has property "for" with value "edit-field-asu-directory-items-und-0-horizontal-tabs-advanced-always-display-view"
     And I press the "Add" button
