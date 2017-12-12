@@ -1,11 +1,22 @@
 language: php
 
-# Latest version of 5.5.x on travis-ci.org
+# PHP 7
 php:
-  - 5.5.29
+  - 7.0
 
 # forces old Travis-CI infrastructure
 sudo: required
+dist: trusty
+group: edge
+
+addons:
+  artifacts: true
+
+# Cache Composer & Drush directories.
+cache:
+  directories:
+    - $HOME/.composer/cache
+    - $HOME/.drush/cache
 
 mysql:
   database: drupal
@@ -13,10 +24,12 @@ mysql:
   encoding: utf8
 
 # whitelist
+# todo: remove webspark branch after testing
 branches:
   only:
     - master
     - travis-ci
+    - issue-webspark-1201
 
 # Firefox 47.0 is currently breaking Selenium Server
 # TODO - Update from Selenium Server Standalone to alternative Marionette
@@ -58,13 +71,22 @@ install:
   # Build Behat dependencies
   - cd profiles/openasu/modules/panopoly/panopoly_test/behat
   - composer install --no-interaction
-  - cd /home/travis/build/ASU/webspark-drops-drupal7
+  # Build Behat dependencies
+  - cd ../../../custom/webspark_test/behat
+  - composer install --no-interaction
+  # todo: change this before merging
+  - cd /home/travis/build/ctestama/webspark-drops-drupal7
 
   # Build Codebase
   - mkdir private_files
 
+  # create directory for behat screenshots
+  - mkdir -p sites/default/files/behat_screenshot
+  - mkdir -p sites/default/files/private/isearch/feeds
+
   # Setup files
-  - sudo chmod -R 777 sites/all
+  - sudo chmod -R 777 sites
+  - sudo chmod -R 777 /tmp
 
   # Get Selenium
   - wget https://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.0.jar
@@ -86,12 +108,15 @@ before_script:
   - drush vset --always-set asu_brand_ci_testing 1
   # Enable Panopoly Test module
   - drush pm-enable panopoly_test --yes
+  - drush pm-enable webspark_test --yes
   - drush cc all
   - cd ./profiles/openasu/modules/panopoly/panopoly_test/behat
 
 script:
-
-  - bin/behat --colors --tags '~@webspark_ignore' --tags '~@panopoly_demo' --tags '~@panopoly_search' --config behat.travis.yml
+  #todo: uncomment this line before
+  #- bin/behat --colors --tags '~@webspark_ignore' --tags '~@panopoly_demo' --tags '~@panopoly_search' --config behat.travis.yml
+  - cd ../../../custom/webspark_test/behat
+  - bin/behat --colors --config behat.travis.yml --tags '~@webspark_ignore'
 
 after_script:
 
@@ -102,4 +127,6 @@ after_script:
 
 notifications:
   email:
-    - webspark-ci@googlegroups.com
+  #TODO: change this back after testing
+  - ctestama@asu.edu
+  #  - webspark-ci@googlegroups.com

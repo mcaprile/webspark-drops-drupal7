@@ -1,0 +1,13 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: ctestama
+ * Date: 12/11/17
+ * Time: 6:50 PM
+ */
+function webspark_test_install() {
+
+  // Set the private and temporary file paths.
+  variable_set('file_private_path', 'sites/default/files/private');
+  variable_set('file_temporary_path', '/tmp');
+}
