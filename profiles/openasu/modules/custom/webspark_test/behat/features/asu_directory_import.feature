@@ -16,7 +16,7 @@ Feature: Import iSearch Profiles
     #  And I wait for 30 seconds
     #  Then I should see "Processed"
 
-  @drupal_private_files @javascript @api
+  @javascript @api
   Scenario: Add directory panel with imported profiles
     Given I am at "/admin/content/isearch/configure"
     When I click on the element "label" which has property "data-reactid" with value ".1.1"
